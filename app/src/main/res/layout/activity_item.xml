@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity2">
+    tools:context=".ItemActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="TextView"
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/image"
@@ -13,18 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_centerVertical="true" />
 
-        android:padding="5dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_margin="10dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="24sp" />
+    <!-- Go back button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
         style="@style/Widget.MaterialComponents.Button"
@@ -34,8 +35,4 @@
         android:layout_margin="10dp"
         android:onClick="goToActivityOne"
         android:text="Go back" />
-
-</LinearLayout>
-
-
-
+</RelativeLayout>
