@@ -7,6 +7,53 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <!-- HorizontalScrollView -->
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:scrollbars="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:foregroundGravity="center_vertical">
+
+        <!-- child view -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- LinearLayout children -->
+            <ImageView
+                android:id="@+id/coverImage"
+                android:layout_width="406dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/store_cover1" />
+
+            <ImageView
+                android:id="@+id/coverImage2"
+                android:layout_width="406dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/store_cover2" />
+
+            <ImageView
+                android:id="@+id/coverImage3"
+                android:layout_width="406dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/store_cover3" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+
     <!-- Go back button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
@@ -18,8 +65,14 @@
         android:onClick="goToLoginActivity"
         android:text="Go Login" />
 
-    <ListView
-        android:id="@+id/listView1"
+    <GridView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/grid"
+        android:columnWidth="100dp"
+        android:gravity="center"
+        android:horizontalSpacing="5dip"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp" />
 </LinearLayout>

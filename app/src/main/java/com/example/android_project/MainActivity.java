@@ -13,6 +13,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Books> books = new ArrayList<>();
-    ListView list;
+    GridView grid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
         books.add(new Books("7", "Book7", "book7 is ......", "https://imgtr.ee/images/2024/03/15/e23f5d0074a890e0e7f1c4092aafcef6.jpeg", 50));
         books.add(new Books("8", "Book8", "book8 is ......", "https://imgtr.ee/images/2024/03/15/646672de3540f9ba3f005d4b6945e31a.jpeg", 60));
 
-        list = (ListView) findViewById(R.id.listView1);
-        list.setAdapter(new ListViewCustomAdapter(this, books));
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        grid = (GridView)findViewById(R.id.grid);
+        grid.setAdapter(new ListViewCustomAdapter(this, books));
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(MainActivity.this, ItemActivity.class);
