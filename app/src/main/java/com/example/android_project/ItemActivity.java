@@ -9,11 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.io.InputStream;
 
@@ -32,24 +28,27 @@ public class ItemActivity extends AppCompatActivity {
             "https://imgtr.ee/images/2024/03/15/e23f5d0074a890e0e7f1c4092aafcef6.jpeg",
             "https://imgtr.ee/images/2024/03/15/646672de3540f9ba3f005d4b6945e31a.jpeg",
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_item);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        TextView textViewTitle = findViewById(R.id.textView);
+        TextView textViewDescription = findViewById(R.id.textViewDescription);
+        TextView textViewPrice = findViewById(R.id.textViewPrice);
+        image = findViewById(R.id.image);
 
         Bundle appleData = getIntent().getExtras();
         int count = appleData.getInt("itemPosition", -1);
-        TextView tvBacon = (TextView) findViewById(R.id.textView);
-        tvBacon.setText(desc[count] + " the price = " + itemprice[count]);
-        image = (ImageView) findViewById(R.id.image);
+
+        textViewTitle.setText(desc[count]);
+        textViewDescription.setText("Description: " + desc[count]);
+        textViewPrice.setText("Price: $" + itemprice[count]);
+
         new DownloadImage().execute(imageURLArray[count]);
     }
+
     private class DownloadImage extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... URL) {
@@ -59,14 +58,18 @@ public class ItemActivity extends AppCompatActivity {
                 InputStream input = new java.net.URL(imageURL).openStream();
                 bitmap = BitmapFactory.decodeStream(input);
             } catch (Exception e) {
-                e.printStackTrace();}
-            return bitmap;}
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
         @Override
         protected void onPostExecute(Bitmap result) {
             image.setImageBitmap(result);
         }
     }
-    public void goToActivityOne(View view){
+
+    public void goToActivityOne(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
