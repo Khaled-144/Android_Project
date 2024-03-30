@@ -17,7 +17,7 @@
         android:layout_marginBottom="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextUsername"
+            android:id="@+id/userNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
