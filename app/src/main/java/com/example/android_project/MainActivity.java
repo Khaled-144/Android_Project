@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        books.add(new Books("1", "Book1", "book1 is ......", "https://imgtr.ee/images/2024/03/15/234c05fb92f3ba9267a54e74e4485941.jpeg", 30));
+        books.add(new Books("1", "Apple iPhone 15 Pro Max", "book1 is ......", "https://www.jarir.com/cdn-cgi/image/fit=contain,width=auto,height=auto,quality=85,metadata=none/https://ak-asset.jarir.com/akeneo-prod/asset/9/1/f/b/91fb59d28a2cc685d305ebb985f76954c86cabd5_623632.jpg", 6699));
         books.add(new Books("2", "Book2", "book2 is ......", "https://imgtr.ee/images/2024/03/15/ad0e6491a3a2a692ecae2305ef3d73bc.jpeg", 50));
         books.add(new Books("3", "Book3", "book3 is ......", "https://imgtr.ee/images/2024/03/15/ffb828f40013216c00f21f67ac0452ad.jpeg", 60));
         books.add(new Books("4", "Book4", "book4 is ......", "https://imgtr.ee/images/2024/03/15/839b16632d36edb2b5e6420a0cd7c242.jpeg", 40));
