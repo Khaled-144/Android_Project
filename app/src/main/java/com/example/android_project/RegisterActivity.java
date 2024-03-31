@@ -1,5 +1,6 @@
 package com.example.android_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -53,12 +54,15 @@ public class RegisterActivity extends AppCompatActivity {
             nn = username.getText().toString();
             pp = password.getText().toString();
 
-            conn= DriverManager.getConnection("DataSource=SQL6031.site4now.net;Initial Catalog=db_aa717c_android;User Id=db_aa717c_android_admin;Password=W3P@g8pWivuWW2");
+            conn= DriverManager.getConnection("jdbc:jtds:sqlserver://SQL6031.site4now.net/db_aa717c_android","db_aa717c_android_admin","W3P@g8pWivuWW2");
             stat=conn.createStatement();
             String query = "insert into  usertable (username,userpass) values ( '" + nn.toString() + "' ,'" + pp.toString() + "' ) ";
             int rs = stat.executeUpdate(query);
             tv.setText("Sucessfully Added");
             conn.close();
+            // Go back to login activity
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
 
         } catch (Exception e) {
             tv.setText("Error"+e.getMessage());

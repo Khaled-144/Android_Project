@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.InputStream;
 
 public class ItemActivity extends AppCompatActivity {
+
+    EditText editTextQuantity;
 
     ImageView image;
     String[] desc = {"book1 is ...... ","book2 is ......", "book3 is ......","book4 is ......", "book5 is ......","book6 is ......", "book7 is ......","book8 is ......"};
@@ -47,6 +50,9 @@ public class ItemActivity extends AppCompatActivity {
         textViewPrice.setText("Price: $" + itemprice[count]);
 
         new DownloadImage().execute(imageURLArray[count]);
+
+        // Find EditText view by ID
+        editTextQuantity = findViewById(R.id.editTextQuantity);
     }
 
     private class DownloadImage extends AsyncTask<String, Void, Bitmap> {
@@ -67,6 +73,18 @@ public class ItemActivity extends AppCompatActivity {
         protected void onPostExecute(Bitmap result) {
             image.setImageBitmap(result);
         }
+    }
+
+    // Method to handle adding item to cart
+    public void addToCart(View view) {
+        // Get the quantity input from EditText
+        String quantityText = editTextQuantity.getText().toString();
+
+        // Convert the quantity input to an integer
+        int quantity = Integer.parseInt(quantityText);
+
+        // You can now use the 'quantity' variable to add the item to the cart
+        // For example, you can create a CartItem object and add it to the cart
     }
 
     public void goToActivityOne(View view) {

@@ -145,4 +145,10 @@ public class MainActivity extends AppCompatActivity {
         // Go back to main activity
         startActivity(intent);
     }
+
+    public void goToRegisterActivity(View view){
+        Intent intent = new Intent(this, RegisterActivity.class);
+        // Go back to main activity
+        startActivity(intent);
+    }
 }

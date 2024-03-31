@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(fileTree(mapOf("dir" to "C:\\Users\\Khaled\\Downloads\\Compressed\\jtds-1.3.1.jar", "include" to listOf("*.aar", "*.jar"))))
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

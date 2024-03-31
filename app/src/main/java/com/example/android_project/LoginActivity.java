@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,12 +16,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText username;
-    EditText password;
+
+    EditText username,password;
+    TextView tv;
+    String nn,pp;
+    Connection conn;
+    Statement stat;
 
 
     @SuppressLint("MissingInflatedId")
@@ -42,8 +50,21 @@ public class LoginActivity extends AppCompatActivity {
         //    startActivity(I);
         //}
 
+        //username = (EditText) findViewById(R.id.userNameInput);
+        //password = (EditText) findViewById(R.id.passwordInput);
+
         username = (EditText) findViewById(R.id.userNameInput);
         password = (EditText) findViewById(R.id.passwordInput);
+        tv=(TextView)findViewById(R.id.textView);
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
+
+        } catch (Exception e) {
+            tv.setText("Error"+e.getMessage());
+        }
+
 
     }
 
@@ -52,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             nn = username.getText().toString();
             pp = password.getText().toString();
 
-            conn= DriverManager.getConnection("jdbc:jtds:sqlserver://SQL5074.site4now.net/DB_A505E7_aiman","DB_A505E7_aiman_admin","pwxxxx");
+            conn= DriverManager.getConnection("jdbc:jtds:sqlserver://SQL6031.site4now.net/db_aa717c_android","db_aa717c_android_admin","W3P@g8pWivuWW2");
             stat=conn.createStatement();
             String query = "select * from usertable  where username= '" + nn.toString() + "' and userpass = '" + pp.toString() + "'  ";
             ResultSet rs = stat.executeQuery(query);
@@ -79,6 +100,9 @@ public class LoginActivity extends AppCompatActivity {
         password.setText(loginData.getString("password", "") );
     }
 
-
-
+    public void goToRegisterActivity(View view){
+        Intent intent = new Intent(this, RegisterActivity.class);
+        // Go back to main activity
+        startActivity(intent);
+    }
 }
