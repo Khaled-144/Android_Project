@@ -80,4 +80,17 @@
         android:text="Go back"
         android:textColor="@android:color/white" />
 
+    <!-- Go to payment button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button2"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonAddToCart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:onClick="goToActivityPayment"
+        android:text="Go payment"
+        android:textColor="@android:color/white" />
+
 </RelativeLayout>

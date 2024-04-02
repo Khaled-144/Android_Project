@@ -91,4 +91,8 @@ public class ItemActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void goToActivityPayment(View view) {
+        Intent intent = new Intent(this, PaymentActivity.class);
+        startActivity(intent);
+    }
 }
