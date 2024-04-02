@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -21,16 +22,22 @@ import android.widget.Toast;
 import android.content.Intent;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    BottomNavigationView bottomNavigation;
     ArrayList<Books> books = new ArrayList<>();
     GridView grid;
 
@@ -44,6 +51,29 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // bottom nav bar
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+        BadgeDrawable badge = bottomNavigation.getOrCreateBadge(R.id.bottom_navigation);
+        badge.setVisible(true);
+        badge.setNumber(3);
+
+        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.home) {
+                    Toast.makeText(MainActivity.this, "new game ", Toast.LENGTH_SHORT).show();
+                    return true;
+                } else if (itemId == R.id.phone) {
+                    Toast.makeText(MainActivity.this, "help ", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return true; // return true;
+            }
+        });
+
+
+        // Items
         books.add(new Books("1", "Apple iPhone 15 Pro Max", "book1 is ......", "https://www.jarir.com/cdn-cgi/image/fit=contain,width=auto,height=auto,quality=85,metadata=none/https://ak-asset.jarir.com/akeneo-prod/asset/9/1/f/b/91fb59d28a2cc685d305ebb985f76954c86cabd5_623632.jpg", 6699));
         books.add(new Books("2", "Book2", "book2 is ......", "https://imgtr.ee/images/2024/03/15/ad0e6491a3a2a692ecae2305ef3d73bc.jpeg", 50));
         books.add(new Books("3", "Book3", "book3 is ......", "https://imgtr.ee/images/2024/03/15/ffb828f40013216c00f21f67ac0452ad.jpeg", 60));
