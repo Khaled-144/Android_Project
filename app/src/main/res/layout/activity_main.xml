@@ -85,10 +85,21 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image"
+        android:layout_below="@+id/button"
         android:layout_margin="10dp"
         android:onClick="goToRegisterActivity"
         android:text="Go Register" />
+
+    <!-- Go to catalogue page button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button3"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_margin="10dp"
+        android:onClick="goToCatalogueActivity"
+        android:text="Go catalogue" />
 
     <GridView
         android:layout_width="match_parent"

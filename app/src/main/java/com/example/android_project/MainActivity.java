@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             View rowView = inflater.inflate(R.layout.listitem_row, null, true);
             TextView txtTitle = (TextView) rowView.findViewById(R.id.item);
             TextView extratxt = (TextView) rowView.findViewById(R.id.textView1);
-            TextView pr = (TextView) rowView.findViewById(R.id.textView2);
+            TextView pr = (TextView) rowView.findViewById(R.id.textView1);
             txtTitle.setText(book.booksname);
             pr.setText(book.bookprice + "SR");
             extratxt.setText("Description " + book.bookdesc);
@@ -178,6 +178,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToRegisterActivity(View view){
         Intent intent = new Intent(this, RegisterActivity.class);
+        // Go back to main activity
+        startActivity(intent);
+    }
+
+    public void goToCatalogueActivity(View view){
+        Intent intent = new Intent(this, CatalogueActivity.class);
         // Go back to main activity
         startActivity(intent);
     }
