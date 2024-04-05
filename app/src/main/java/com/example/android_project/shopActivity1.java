@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,7 +89,6 @@ public class shopActivity1 extends AppCompatActivity {
     }
 
     public void ititem(View view) {
-        // list.setAdapter(null);
         items.clear();
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -96,41 +96,41 @@ public class shopActivity1 extends AppCompatActivity {
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection("jdbc:jtds:sqlserver://SQL6031.site4now.net/db_aa717c_android", "db_aa717c_android_admin", "W3P@g8pWivuWW2");
             stat = conn.createStatement();
-            String query = "select * from item   where category =1 ";
+            String query = "SELECT * FROM item WHERE cata = 1";
             ResultSet rs1 = stat.executeQuery(query);
-            int i = 0;
             while (rs1.next()) {
                 items.add(new Items(rs1.getString("id"), rs1.getString("title"),
-                rs1.getString("info"), rs1.getString("imgfile"), rs1.getString("price")));
-
+                        rs1.getString("description"), rs1.getString("image"), rs1.getString("price")));
             }
-
-            list.setAdapter(new ListViewCustomAdapter (this, items ));
+            list.setAdapter(new ListViewCustomAdapter(this, items));
             conn.close();
         } catch (Exception e) {
             Toast.makeText(shopActivity1.this, "Item: " + "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e("ShopActivity1", "Error retrieving it items", e);
         }
     }
+
     public void citem(View view) {
+        items.clear();
         try {
-            items.clear();
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection("jdbc:jtds:sqlserver://SQL6031.site4now.net/db_aa717c_android", "db_aa717c_android_admin", "W3P@g8pWivuWW2");
             stat = conn.createStatement();
-            String query = "select * from item  where category = 2  ";
+            String query = "SELECT * FROM item WHERE cata = 2";
             ResultSet rs = stat.executeQuery(query);
-            int i = 0;
             while (rs.next()) {
-                items.add(new Items(rs.getString("id"), rs.getString("title"), rs.getString("info"), rs.getString("imgfile"), rs.getString("price")));
+                items.add(new Items(rs.getString("id"), rs.getString("title"), rs.getString("description"), rs.getString("image"), rs.getString("price")));
             }
             list.setAdapter(new shopActivity1.ListViewCustomAdapter(this, items));
             conn.close();
         } catch (Exception e) {
             Toast.makeText(shopActivity1.this, "Item: " + "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e("ShopActivity1", "Error retrieving C items", e);
         }
     }
+
     public  class Items {
         String itemid;
         String itemsname;
@@ -181,7 +181,7 @@ public class shopActivity1 extends AppCompatActivity {
             ImageButton abtn = (ImageButton) rowView.findViewById(R.id.addbtn);
             ImageButton rbtn = (ImageButton) rowView.findViewById(R.id.removebtn);
             itemTitle.setText(item.itemsname);
-            itemdesc.setText("Description "+item.itemdesc);
+            itemdesc.setText("Description: "+item.itemdesc);
             pri.setText(item.itemprice + "SR");
             TextView quant = (TextView) rowView.findViewById(R.id.txt1);
             for (int i = 0; i < buys.size(); i++) {
@@ -189,6 +189,44 @@ public class shopActivity1 extends AppCompatActivity {
                 if (selitem.itemsname.equals( itemTitle.getText().toString()))
                 {quant.setText(selitem.itemquant.toString());}
             }
+            abtn.setOnClickListener(
+                    new ImageButton.OnClickListener(){
+                        public void onClick(View v){
+                            String qu = quant.getText().toString();
+                            int qut = Integer.parseInt(qu) + 1;
+                            quant.setText(Integer.toString(qut));
+                            String itemsname= itemTitle.getText().toString();
+                            int flage = 0;
+                            for (int i = 0; i < buys.size(); i++) {
+                                Buy remitem = buys.get(i);
+                                if (remitem.itemsname.equals(itemsname)) {
+                                    buys.get(i).itemquant = qut;
+                                    flage = 1;
+                                    break;}
+                            }
+                            if ( flage == 0)  buys.add(new Buy(item.itemsname, Integer.parseInt(item.itemprice), qut));
+                        }
+                    });
+            rbtn.setOnClickListener(
+                    new ImageButton.OnClickListener(){
+                        public void onClick(View v){
+                            String qu = quant.getText().toString();
+                            int qut = Integer.parseInt(qu) - 1;
+                            if (qut >= 0) {
+                                quant.setText(Integer.toString(qut));
+                                String itemsname = itemTitle.getText().toString();
+                                for (int i = 0; i < buys.size(); i++) {
+                                    Buy remitem = buys.get(i);
+                                    if (remitem.itemsname.equals(itemsname)) {
+                                        buys.get(i).itemquant = qut;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+
             holder.imageView1 = (ImageView) rowView.findViewById(R.id.icon);
             holder.imgurl = item.itemimages;
             new DownloadImage().execute(holder);
@@ -212,12 +250,3 @@ public class shopActivity1 extends AppCompatActivity {
             protected void onPostExecute(ViewHolder vh) {
                 vh.imageView1.setImageBitmap(vh.bitmap);
             }}}}
-
-
-
-
-
-
-
-
-

@@ -49,7 +49,7 @@ public class shopActivity3 extends AppCompatActivity {
             }
             for (int i = 0; i < shopActivity1.buys.size(); i++) {
                 shopActivity1.Buy item = shopActivity1.buys.get(i);
-                query = "insert into  orderline (orderid,itemname,itemquant,itemprice) values ( '" + idd + "'  ,'" + item.itemsname + "' ,'" + item.itemquant + "','" + item.itemprice + "') ";
+                query = "insert into  orderline (orderid,itemname,itemquantt,itemprice) values ( '" + idd + "'  ,'" + item.itemsname + "' ,'" + item.itemquant + "','" + item.itemprice + "') ";
                 rs = stat.executeUpdate(query);
                 query = "update item set itemquantity = itemquantity - '" + item.itemquant + "'  where title = '" + item.itemsname + "'";
                 rs = stat.executeUpdate(query);

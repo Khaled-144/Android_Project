@@ -18,14 +18,14 @@
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:text="I t books"
-                android:onClick="itbook"/>
+                android:onClick="ititem"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:text="C# "
-                android:onClick="cbook"/>
+                android:onClick="citem"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

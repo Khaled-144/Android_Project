@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="168dp"
         android:layout_marginTop="142dp"
+        android:gravity="center_horizontal"
         android:text=""
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

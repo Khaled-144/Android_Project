@@ -29,9 +29,6 @@
             android:name=".CatalogueActivity"
             android:exported="false" />
         <activity
-            android:name=".catelougeActivity"
-            android:exported="false" />
-        <activity
             android:name=".PaymentActivity"
             android:exported="false" />
         <activity

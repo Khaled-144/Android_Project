@@ -110,7 +110,17 @@
         android:layout_below="@+id/button3"
         android:layout_margin="10dp"
         android:onClick="goToshop1Activity"
-        android:text="Go catalogue" />
+        android:text="Go shop1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button5"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button4"
+        android:layout_margin="10dp"
+        android:onClick="goToshop2Activity"
+        android:text="Go shop2" />
 
     <GridView
         android:layout_width="match_parent"

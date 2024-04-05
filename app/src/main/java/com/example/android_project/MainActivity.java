@@ -192,4 +192,9 @@ public class MainActivity extends AppCompatActivity {
         // Go back to main activity
         startActivity(intent);
     }
+    public void goToshop2Activity(View view){
+        Intent intent = new Intent(this, shopActivity2.class);
+        // Go back to main activity
+        startActivity(intent);
+    }
 }
