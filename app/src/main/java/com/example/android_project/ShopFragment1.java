@@ -19,12 +19,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -33,7 +30,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class shopActivity1 extends AppCompatActivity {
+public class ShopFragment1 extends Fragment {
 
     ListView list;
     Connection conn;
@@ -42,46 +39,58 @@ public class shopActivity1 extends AppCompatActivity {
     ArrayList<Items> items = new ArrayList<>();
     public static ArrayList<Buy> buys = new ArrayList<>();
 
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_shop1, container, false);
+        list = rootView.findViewById(R.id.listView1);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_shop1);
-        list = (ListView) findViewById(R.id.listView1);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-        ititem(null);
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:jtds:sqlserver://SQL6031.site4now.net/db_aa717c_android", "db_aa717c_android_admin", "W3P@g8pWivuWW2");
+            stat = conn.createStatement();
+            String query = "SELECT * FROM item WHERE cata = 1";
+            ResultSet rs1 = stat.executeQuery(query);
+            while (rs1.next()) {
+                items.add(new Items(rs1.getString("id"), rs1.getString("title"),
+                        rs1.getString("description"), rs1.getString("image"), rs1.getString("price")));
+            }
+            list.setAdapter(new ListViewCustomAdapter(getActivity(), items));
+            conn.close();
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e("ShopFragment1", "Error retrieving items", e);
+        }
+
+        return rootView;
     }
+
+    // Inner classes (Items, Buy, ViewHolder, and ListViewCustomAdapter) should remain the same...
     public void show(View view) {
-        tot = 0;
+        int tot = 0;
         String ss = "";
-        Integer subtot = 0;
-        for (int i = 0; i < buys.size(); i++) {
-            Buy item= buys.get(i);
-            subtot = item.itemprice* item.itemquant;
+        for (Buy buy : buys) {
+            int subtot = buy.itemprice * buy.itemquant;
             tot += subtot;
-            ss += "\n" + item.itemsname + "  " + item.itemquant + " " + subtot + "SR";
+            ss += "\n" + buy.itemsname + "  " + buy.itemquant + " " + subtot + " SR";
         }
         ss += "\n" + "Total: " + tot;
-        AlertDialog.Builder builder = new AlertDialog.Builder(shopActivity1.this);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Confirm Purchase");
         builder.setMessage("Purchased Items: " + ss);
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                Intent I = new Intent(shopActivity1.this, shopActivity2.class);
-                startActivity(I); // go to this activity
+                Intent intent = new Intent(getActivity(), shopActivity2.class);
+                startActivity(intent); // go to this activity
             }
         });
 
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(shopActivity1.this, "you pressed no ",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You pressed No", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -103,10 +112,10 @@ public class shopActivity1 extends AppCompatActivity {
                 items.add(new Items(rs1.getString("id"), rs1.getString("title"),
                         rs1.getString("description"), rs1.getString("image"), rs1.getString("price")));
             }
-            list.setAdapter(new ListViewCustomAdapter(this, items));
+            list.setAdapter(new ListViewCustomAdapter(getActivity(), items));
             conn.close();
         } catch (Exception e) {
-            Toast.makeText(shopActivity1.this, "Item: " + "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Item: " + "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
             Log.e("ShopActivity1", "Error retrieving it items", e);
         }
     }
@@ -114,6 +123,7 @@ public class shopActivity1 extends AppCompatActivity {
     public void citem(View view) {
         items.clear();
         try {
+            // Establish database connection and execute query for cata = 2
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
@@ -124,10 +134,10 @@ public class shopActivity1 extends AppCompatActivity {
             while (rs.next()) {
                 items.add(new Items(rs.getString("id"), rs.getString("title"), rs.getString("description"), rs.getString("image"), rs.getString("price")));
             }
-            list.setAdapter(new shopActivity1.ListViewCustomAdapter(this, items));
+            list.setAdapter(new ListViewCustomAdapter(getActivity(), items));
             conn.close();
         } catch (Exception e) {
-            Toast.makeText(shopActivity1.this, "Item: " + "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Item: " + "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
             Log.e("ShopActivity1", "Error retrieving C items", e);
         }
     }
@@ -230,7 +240,7 @@ public class shopActivity1 extends AppCompatActivity {
 
             holder.imageView1 = (ImageView) rowView.findViewById(R.id.icon);
             holder.imgurl = item.itemimages;
-            new DownloadImage().execute(holder);
+            new ListViewCustomAdapter.DownloadImage().execute(holder);
             return rowView;
 
         };
@@ -254,9 +264,8 @@ public class shopActivity1 extends AppCompatActivity {
         }
     }
 
-    public void goToMainActivity(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        // Go back to main activity
+    public void goToMainActivity(View view) {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
     }
 

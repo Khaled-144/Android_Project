@@ -61,6 +61,14 @@
                 android:layout_height="wrap_content"
                 android:text="Buy"
                 android:onClick="show"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button6"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="goToMainActivity"
+                android:text="Go Home" />
         </LinearLayout>
     </ScrollView>
 
