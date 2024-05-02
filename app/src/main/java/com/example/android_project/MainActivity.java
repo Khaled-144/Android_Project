@@ -50,10 +50,16 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // Load HomeFragment when MainActivity is created
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flFragment, new HomeFragment())
+                .commit();
+
         bottomNavigation = findViewById(R.id.bottom_navigation); // Replace R.id.bottom_navigation with your actual BottomNavigationView id
 
         ContactFragment contactFragment = new ContactFragment();
         CatalogueFragment catalogueFragment = new CatalogueFragment();
+        HomeFragment homeFragment = new HomeFragment();
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -71,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     return true;
                 } else if (itemId == R.id.home) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, contactFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment).commit();
                     return true;
                 }
                 return true;
