@@ -9,7 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ContactFragment#newInstance} factory method to
@@ -60,8 +64,12 @@ public class ContactFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View rootView =  inflater.inflate(R.layout.fragment_contact, container, false);
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
+        // Display the Google Maps fragment
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.map_fragment, new MapsFragment())
+                .commit();
         return rootView;
     }
 

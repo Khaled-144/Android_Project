@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
 }
 
 android {
@@ -43,6 +44,7 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation ("com.braintreepayments:card-form:5.3.0")
     implementation(fileTree(mapOf("dir" to "C:\\Users\\Khaled\\Downloads\\Compressed\\jtds-1.3.1.jar", "include" to listOf("*.aar", "*.jar"))))
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
