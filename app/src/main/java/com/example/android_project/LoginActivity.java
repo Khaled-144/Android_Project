@@ -53,6 +53,16 @@ public class LoginActivity extends AppCompatActivity {
         //username = (EditText) findViewById(R.id.userNameInput);
         //password = (EditText) findViewById(R.id.passwordInput);
 
+        // Check if the activity is started with an intent that contains the username
+        if (getIntent().hasExtra("username")) {
+            // Retrieve the username from the intent
+            String username = getIntent().getStringExtra("username");
+
+            // Set the retrieved username to the EditText
+            EditText usernameEditText = findViewById(R.id.userNameInput);
+            usernameEditText.setText(username);
+        }
+
         username = (EditText) findViewById(R.id.userNameInput);
         password = (EditText) findViewById(R.id.passwordInput);
         tv=(TextView)findViewById(R.id.textView);

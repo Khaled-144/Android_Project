@@ -62,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
             conn.close();
             // Go back to login activity
             Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("username", nn);
             startActivity(intent);
 
         } catch (Exception e) {
