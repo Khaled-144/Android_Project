@@ -44,9 +44,10 @@
         android:id="@+id/textdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_below="@+id/spinner"
-        android:text="Enter your Birth date:" />
+        android:layout_marginTop="20dp"
+        android:text="Enter your Birth date:"
+        android:textSize="18sp" />
 
     <DatePicker
         android:id="@+id/date_picker"

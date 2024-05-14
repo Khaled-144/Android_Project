@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
         bottomNavigation = findViewById(R.id.bottom_navigation); // Replace R.id.bottom_navigation with your actual BottomNavigationView id
+
+        // catalogue Badge(notification) number
+        BadgeDrawable badge = bottomNavigation.getOrCreateBadge(R.id.catalogue);
+        badge.setVisible(true);
+        badge.setNumber(3);
 
         ContactFragment contactFragment = new ContactFragment();
         CatalogueFragment catalogueFragment = new CatalogueFragment();
