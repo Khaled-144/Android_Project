@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
             stat=conn.createStatement();
             String query = "insert into  usertable (username,userpass) values ( '" + nn.toString() + "' ,'" + pp.toString() + "' ) ";
             int rs = stat.executeUpdate(query);
-            tv.setText("Sucessfully Added");
+            tv.setText("Successfully Added!");
             conn.close();
             // Go back to login activity
             Intent intent = new Intent(this, LoginActivity.class);

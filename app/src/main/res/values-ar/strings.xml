@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_name_here">أدخل اسمك هنا</string>
+    <string name="enter_pass_here">أدخل كلمة المرور</string>
+    <string name="enter_your_birth_date">أدخل تاريخ ميلادك</string>
+    <string name="registration">تسجيل</string>
+</resources>
