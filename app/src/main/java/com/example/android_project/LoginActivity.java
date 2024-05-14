@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,12 +24,12 @@ import java.sql.Statement;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText username,password;
+    EditText username, password;
     TextView tv;
-    String nn,pp;
+    String nn, pp;
     Connection conn;
     Statement stat;
-
+    CheckBox checkBoxRememberMe;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -42,16 +43,11 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        //SharedPreferences loginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-
-        //if ( !loginData.getString("userName", "").equals(""))
-        //{
-        //    Intent I = new Intent(LoginActivity.this, MainActivity.class);
-        //    startActivity(I);
-        //}
-
-        //username = (EditText) findViewById(R.id.userNameInput);
-        //password = (EditText) findViewById(R.id.passwordInput);
+        // Initialize views
+        username = findViewById(R.id.userNameInput);
+        password = findViewById(R.id.passwordInput);
+        tv = findViewById(R.id.textView);
+        checkBoxRememberMe = findViewById(R.id.checkBoxRememberMe);
 
         // Check if the activity is started with an intent that contains the username
         if (getIntent().hasExtra("username")) {
@@ -63,19 +59,14 @@ public class LoginActivity extends AppCompatActivity {
             usernameEditText.setText(username);
         }
 
-        username = (EditText) findViewById(R.id.userNameInput);
-        password = (EditText) findViewById(R.id.passwordInput);
-        tv=(TextView)findViewById(R.id.textView);
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
 
         } catch (Exception e) {
-            tv.setText("Error"+e.getMessage());
+            tv.setText("Error" + e.getMessage());
         }
-
-
     }
 
     public void vv(View view) {
@@ -83,36 +74,50 @@ public class LoginActivity extends AppCompatActivity {
             nn = username.getText().toString();
             pp = password.getText().toString();
 
-            conn= DriverManager.getConnection("jdbc:jtds:sqlserver://SQL6031.site4now.net/db_aa717c_android","db_aa717c_android_admin","W3P@g8pWivuWW2");
-            stat=conn.createStatement();
+            conn = DriverManager.getConnection("jdbc:jtds:sqlserver://SQL6031.site4now.net/db_aa717c_android", "db_aa717c_android_admin", "W3P@g8pWivuWW2");
+            stat = conn.createStatement();
             String query = "select * from usertable  where username= '" + nn.toString() + "' and userpass = '" + pp.toString() + "'  ";
             ResultSet rs = stat.executeQuery(query);
 
             if (rs.next()) {
                 Intent I = new Intent(this, MainActivity.class);
                 startActivity(I);
+
+                // If "Remember me" checkbox is checked, save the username and password
+                if (checkBoxRememberMe.isChecked()) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("username", nn); // Save username
+                    editor.putString("password", pp); // Save password
+                    editor.putBoolean("rememberMe", true); // Save rememberMe status
+                    editor.apply();
+                }
             } else {
                 tv.setText("Invalid Credentials!");
             }
             conn.close();
 
         } catch (Exception e) {
-            tv.setText("Error"+e.getMessage());
+            tv.setText("Error" + e.getMessage());
         }
     }
 
-
-
-
-    public void getData(View view){
+    public void getData(View view) {
         SharedPreferences loginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        username.setText(loginData.getString("userName", "") );
-        password.setText(loginData.getString("password", "") );
+        username.setText(loginData.getString("userName", ""));
+        password.setText(loginData.getString("password", ""));
     }
 
-    public void goToRegisterActivity(View view){
+    public void goToRegisterActivity(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         // Go back to main activity
         startActivity(intent);
+    }
+
+    private void logout() {
+        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear(); // Clear all saved credentials
+        editor.apply();
     }
 }
