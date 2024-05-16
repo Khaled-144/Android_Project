@@ -106,11 +106,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToCatalogueActivity(View view){
-        Intent intent = new Intent(this, CatalogueActivity.class);
-        // Go back to main activity
-        startActivity(intent);
-    }
+
     public void goToshop1Activity(View view){
         Intent intent = new Intent(this, shopActivity1.class);
         // Go back to main activity

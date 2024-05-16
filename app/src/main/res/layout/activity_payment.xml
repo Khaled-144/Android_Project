@@ -7,11 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".PaymentActivity">
 
-
     <com.braintreepayments.cardform.view.CardForm
         android:id="@+id/card_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/btnBuy"
         android:layout_width="match_parent"
@@ -21,7 +21,6 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="10dp"
-
-        android:text="buy_now"
+        android:text="Buy now"
         android:textColor="@android:color/white" />
 </RelativeLayout>

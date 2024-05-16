@@ -4,4 +4,5 @@
     <string name="enter_pass_here">أدخل كلمة المرور</string>
     <string name="enter_your_birth_date">أدخل تاريخ ميلادك</string>
     <string name="registration">تسجيل</string>
+    <string name="choose_your_gender">اختر الجنس</string>
 </resources>

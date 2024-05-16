@@ -9,4 +9,5 @@
     <string name="enter_pass_here">Enter Password Here...</string>
     <string name="enter_your_birth_date">Enter your Birth date:</string>
     <string name="registration">registration</string>
+    <string name="choose_your_gender">Choose your gender:</string>
 </resources>
