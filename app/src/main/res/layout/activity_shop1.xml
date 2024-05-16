@@ -4,6 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
+
     <HorizontalScrollView
         android:layout_width="fill_parent"
         android:layout_height="70dp"
@@ -31,13 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:text="CS books" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:text="other" />
+                android:text="Others" />
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -50,15 +45,16 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical" >
-
             <ListView
                 android:id="@+id/listView1"
                 android:layout_width="fill_parent"
-                android:layout_height="400dp" />
-            <Button
+                android:layout_height="500dp" />
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button5"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="Buy"
                 android:onClick="show"/>
             <com.google.android.material.button.MaterialButton
@@ -71,5 +67,4 @@
                 android:text="Go Home" />
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
