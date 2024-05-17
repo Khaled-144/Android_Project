@@ -14,11 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.braintreepayments.cardform.view.CardForm;
 
 public class PaymentActivity extends AppCompatActivity {
-
     CardForm cardForm;
     Button buy;
     AlertDialog.Builder alertBuilder;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +62,6 @@ public class PaymentActivity extends AppCompatActivity {
                     });
                     AlertDialog alertDialog = alertBuilder.create();
                     alertDialog.show();
-
                 } else {
                     Toast.makeText(PaymentActivity.this, "Please complete the form", Toast.LENGTH_LONG).show();
                 }

@@ -18,14 +18,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -41,8 +39,6 @@ public class shopActivity1 extends AppCompatActivity {
     public static Integer tot;
     ArrayList<Items> items = new ArrayList<>();
     public static ArrayList<Buy> buys = new ArrayList<>();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +80,6 @@ public class shopActivity1 extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }
@@ -227,12 +222,10 @@ public class shopActivity1 extends AppCompatActivity {
                         }
                     });
 
-
             holder.imageView1 = (ImageView) rowView.findViewById(R.id.icon);
             holder.imgurl = item.itemimages;
             new DownloadImage().execute(holder);
             return rowView;
-
         };
 
         private class DownloadImage extends AsyncTask<ViewHolder, Void, ViewHolder> {
@@ -259,5 +252,4 @@ public class shopActivity1 extends AppCompatActivity {
         // Go back to main activity
         startActivity(intent);
     }
-
 }

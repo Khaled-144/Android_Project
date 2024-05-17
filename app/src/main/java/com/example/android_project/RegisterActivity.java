@@ -6,25 +6,21 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class RegisterActivity extends AppCompatActivity {
-
     EditText username,password;
     TextView tv;
     String nn,pp;
     Connection conn;
     Statement stat;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
         } catch (Exception e) {
             tv.setText("Error"+e.getMessage());
         }
-
     }
 
     public void ww(View view) {
@@ -64,11 +59,8 @@ public class RegisterActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra("username", nn);
             startActivity(intent);
-
         } catch (Exception e) {
             tv.setText("Error"+e.getMessage());
         }
     }
 }
-
-

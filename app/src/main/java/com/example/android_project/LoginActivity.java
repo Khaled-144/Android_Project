@@ -42,6 +42,13 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // new auto login
+        SharedPreferences loginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        if ( !loginData.getString("userName", "").equals(""))
+        {
+            Intent I = new Intent(this, MainActivity.class);
+            startActivity(I);
+        }
 
         // Initialize views
         username = findViewById(R.id.userNameInput);
@@ -85,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // If "Remember me" checkbox is checked, save the username and password
                 if (checkBoxRememberMe.isChecked()) {
-                    SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("username", nn); // Save username
                     editor.putString("password", pp); // Save password
@@ -112,12 +119,5 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         // Go back to main activity
         startActivity(intent);
-    }
-
-    private void logout() {
-        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear(); // Clear all saved credentials
-        editor.apply();
     }
 }

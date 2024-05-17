@@ -8,13 +8,11 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,7 +21,6 @@ import java.sql.Statement;
 public class shopActivity3 extends AppCompatActivity {
     Connection conn;
     Statement stat;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +31,7 @@ public class shopActivity3 extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
         } );
-
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
@@ -67,7 +62,6 @@ public class shopActivity3 extends AppCompatActivity {
 
         // Find the RatingBar in the layout
         RatingBar ratingBar = findViewById(R.id.ratingBar);
-
         // Set an OnRatingBarChangeListener
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -80,7 +74,6 @@ public class shopActivity3 extends AppCompatActivity {
 
         // Find the button in the layout
         Button buttonHome = findViewById(R.id.buttonHome);
-
         // Set click listener for the button
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,9 +83,5 @@ public class shopActivity3 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
-
-
-
 }

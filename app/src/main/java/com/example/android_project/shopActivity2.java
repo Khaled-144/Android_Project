@@ -5,21 +5,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.braintreepayments.cardform.view.CardForm;
 
 public class shopActivity2 extends AppCompatActivity {
-
     CardForm cardForm;
     Button buy;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +38,6 @@ public class shopActivity2 extends AppCompatActivity {
     }
     public void buy(View view) {
         Intent I = new Intent(shopActivity2.this, shopActivity3.class);
-        startActivity(I); // go to this activity
+        startActivity(I); // go to shopActivity3
     }
 }
-

@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:hint="Username"
             android:inputType="text" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Password input -->
@@ -41,7 +40,6 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
@@ -58,8 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="vv"
-        android:text="Login"
-    />
+        android:text="Login" />
 
     <!-- Go to register page button -->
     <com.google.android.material.button.MaterialButton
@@ -68,9 +65,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="goToRegisterActivity"
-        android:text="Go Register"
-      />
-
-
-
+        android:text="Go Register" />
 </LinearLayout>
