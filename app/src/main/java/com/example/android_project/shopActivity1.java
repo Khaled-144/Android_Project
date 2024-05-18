@@ -69,7 +69,7 @@ public class shopActivity1 extends AppCompatActivity {
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent I = new Intent(shopActivity1.this, shopActivity2.class);
-                startActivity(I); // go to this activity
+                startActivity(I);
             }
         });
 
@@ -249,7 +249,6 @@ public class shopActivity1 extends AppCompatActivity {
 
     public void goToMainActivity(View view){
         Intent intent = new Intent(this, MainActivity.class);
-        // Go back to main activity
         startActivity(intent);
     }
 }

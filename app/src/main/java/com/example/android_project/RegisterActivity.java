@@ -38,7 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
-
         } catch (Exception e) {
             tv.setText("Error"+e.getMessage());
         }
@@ -55,7 +54,6 @@ public class RegisterActivity extends AppCompatActivity {
             int rs = stat.executeUpdate(query);
             tv.setText("Successfully Added!");
             conn.close();
-            // Go back to login activity
             Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra("username", nn);
             startActivity(intent);

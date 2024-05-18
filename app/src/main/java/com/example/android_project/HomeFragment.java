@@ -12,11 +12,9 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-
     public HomeFragment() {
         // Required empty public constructor
     }
-
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
@@ -25,7 +23,6 @@ public class HomeFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,20 +35,12 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Find the WebView in the layout
         WebView webView = rootView.findViewById(R.id.webView);
-
-        // Load the URL into the WebView
         webView.loadUrl("https://www.jarir.com/");
-
-        // to allow images and enable running java scripts
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
-
-        // to allow scrolling down the web page
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
         return rootView;

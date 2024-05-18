@@ -23,14 +23,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class LoginActivity extends AppCompatActivity {
-
     EditText username, password;
     TextView tv;
     String nn, pp;
     Connection conn;
     Statement stat;
     CheckBox checkBoxRememberMe;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // new auto login
+
         SharedPreferences loginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         if ( !loginData.getString("userName", "").equals(""))
         {
@@ -50,18 +48,13 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(I);
         }
 
-        // Initialize views
         username = findViewById(R.id.userNameInput);
         password = findViewById(R.id.passwordInput);
         tv = findViewById(R.id.textView);
         checkBoxRememberMe = findViewById(R.id.checkBoxRememberMe);
 
-        // Check if the activity is started with an intent that contains the username
         if (getIntent().hasExtra("username")) {
-            // Retrieve the username from the intent
             String username = getIntent().getStringExtra("username");
-
-            // Set the retrieved username to the EditText
             EditText usernameEditText = findViewById(R.id.userNameInput);
             usernameEditText.setText(username);
         }
@@ -90,13 +83,12 @@ public class LoginActivity extends AppCompatActivity {
                 Intent I = new Intent(this, MainActivity.class);
                 startActivity(I);
 
-                // If "Remember me" checkbox is checked, save the username and password
                 if (checkBoxRememberMe.isChecked()) {
                     SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("username", nn); // Save username
-                    editor.putString("password", pp); // Save password
-                    editor.putBoolean("rememberMe", true); // Save rememberMe status
+                    editor.putString("username", nn);
+                    editor.putString("password", pp);
+                    editor.putBoolean("rememberMe", true);
                     editor.apply();
                 }
             } else {
@@ -109,15 +101,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void getData(View view) {
-        SharedPreferences loginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        username.setText(loginData.getString("userName", ""));
-        password.setText(loginData.getString("password", ""));
-    }
-
     public void goToRegisterActivity(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
-        // Go back to main activity
         startActivity(intent);
     }
 }

@@ -20,16 +20,13 @@ import android.provider.Settings;
 import androidx.core.app.ActivityCompat;
 
 public class ContactFragment extends Fragment {
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-
     public ContactFragment() {
         // Required empty public constructor
     }
-
     public static ContactFragment newInstance(String param1, String param2) {
         ContactFragment fragment = new ContactFragment();
         Bundle args = new Bundle();
@@ -38,7 +35,6 @@ public class ContactFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,50 +43,36 @@ public class ContactFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
     private TextView locationTextView;
     private LocationManager locationManager;
     private LocationListener locationListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
 
-        // Display the Google Maps fragment
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.map_fragment, new MapsFragment())
                 .commit();
 
-        // Get the ImageView for the store icon
         ImageView storeIcon = rootView.findViewById(R.id.storeIcon);
-
-        // Set OnClickListener to the store icon ImageView
         storeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Load the animation
                 Animation clockwiseAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.clockwise);
-                // Apply the animation to the ImageView
                 storeIcon.startAnimation(clockwiseAnimation);
             }
         });
 
-        // Initialize views
         locationTextView = rootView.findViewById(R.id.locationTextView);
-
-        // Initialize location manager and listener
         locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                // Display the latitude and longitude directly
                 locationTextView.setText("Your Location is: "+"\nLatitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude());
             }
-
             @Override
             public void onProviderEnabled(String provider) {}
-
             @Override
             public void onProviderDisabled(String provider) {
                 // Show settings panel to enable GPS
@@ -98,29 +80,22 @@ public class ContactFragment extends Fragment {
                 startActivity(intent);
             }
         };
-
-        // Request location updates
         requestLocationUpdates();
-
         return rootView;
     }
 
     private void requestLocationUpdates() {
-        // Check for permissions
         if (ActivityCompat.checkSelfPermission(requireContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(requireContext(),
                         android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            // Request permissions
             ActivityCompat.requestPermissions(requireActivity(),
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
                             android.Manifest.permission.ACCESS_COARSE_LOCATION}, 10);
-
             return;
         }
 
-        // Request location updates
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                 5000, 0, locationListener);
     }
@@ -131,11 +106,9 @@ public class ContactFragment extends Fragment {
                                             int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 10) {
-            // If permission is granted, start location updates
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 requestLocationUpdates();
             } else {
-                // If permission is denied, display a message
                 Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show();
             }
         }

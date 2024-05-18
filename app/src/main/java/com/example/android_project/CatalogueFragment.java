@@ -22,7 +22,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class CatalogueFragment extends Fragment {
-
     ListView list;
     Connection conn;
     Statement stat;
@@ -31,7 +30,6 @@ public class CatalogueFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-
     public CatalogueFragment() {
         // Required empty public constructor
     }
@@ -106,7 +104,6 @@ public class CatalogueFragment extends Fragment {
         public ListViewCustomAdapter(Activity context, ArrayList<Items> items) {
             super(context, R.layout.listitem_row, items);
             this.context = context;
-
         }
 
         public View getView(int position, View view, ViewGroup parent) {
@@ -139,7 +136,6 @@ public class CatalogueFragment extends Fragment {
                 }
                 return viewHolder;
             }
-
             @Override
             protected void onPostExecute(ViewHolder vh) {
                 vh.imageView1.setImageBitmap(vh.bitmap);

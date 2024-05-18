@@ -16,11 +16,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsFragment extends Fragment {
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
-        @Override // Taibah Uni: 24.484858556137638, 39.54407045754295
+        @Override
         public void onMapReady(GoogleMap googleMap) {
             LatLng Taibah = new LatLng(24.484858556137638, 39.54407045754295);
             googleMap.addMarker(new MarkerOptions().position(Taibah).title("Marker in Taibah"));
-            float zoomLevel = 14.0f; //This goes up to 21
+            float zoomLevel = 14.0f;
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Taibah,zoomLevel));
         }
     };

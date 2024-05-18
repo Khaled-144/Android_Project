@@ -26,14 +26,12 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // Load HomeFragment when MainActivity is created
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.flFragment, new HomeFragment())
                 .commit();
 
-        bottomNavigation = findViewById(R.id.bottom_navigation); // Replace R.id.bottom_navigation with your actual BottomNavigationView id
+        bottomNavigation = findViewById(R.id.bottom_navigation);
 
-        // catalogue Badge(notification) number
         BadgeDrawable badge = bottomNavigation.getOrCreateBadge(R.id.catalogue);
         badge.setVisible(true);
         badge.setNumber(3);
@@ -68,12 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToRegisterActivity(View view){
         Intent intent = new Intent(this, RegisterActivity.class);
-        // Go back to main activity
-        startActivity(intent);
-    }
-    public void goToshop1Activity(View view){
-        Intent intent = new Intent(this, shopActivity1.class);
-        // Go back to main activity
         startActivity(intent);
     }
 }

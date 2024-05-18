@@ -9,22 +9,18 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
-    <!-- Content area -->
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="1dp"
         android:foregroundGravity="center_vertical">
-
-        <!-- HorizontalScrollView child view -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- ImageViews for covers -->
             <ImageView
                 android:id="@+id/coverImage"
                 android:layout_width="406dp"
@@ -48,17 +44,6 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <!--<com.google.android.material.button.MaterialButton
-        android:id="@+id/button4"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
-        android:layout_margin="10dp"
-        android:onClick="goToshop1Activity"
-        android:text="Go shop1" />-->
-
-    <!-- FrameLayout to host fragments -->
     <FrameLayout
         android:id="@+id/flFragment"
         android:layout_width="match_parent"
@@ -67,7 +52,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp" />
 
-    <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"

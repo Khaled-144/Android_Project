@@ -60,25 +60,18 @@ public class shopActivity3 extends AppCompatActivity {
             Toast.makeText(shopActivity3.this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        // Find the RatingBar in the layout
         RatingBar ratingBar = findViewById(R.id.ratingBar);
-        // Set an OnRatingBarChangeListener
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                // Display a toast message when the rating changes
                 Toast.makeText(shopActivity3.this, "Thanks for rating!", Toast.LENGTH_SHORT).show();
             }
         });
 
-
-        // Find the button in the layout
         Button buttonHome = findViewById(R.id.buttonHome);
-        // Set click listener for the button
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate back to the home page (MainActivity)
                 Intent intent = new Intent(shopActivity3.this, MainActivity.class);
                 startActivity(intent);
             }

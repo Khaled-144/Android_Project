@@ -38,6 +38,6 @@ public class shopActivity2 extends AppCompatActivity {
     }
     public void buy(View view) {
         Intent I = new Intent(shopActivity2.this, shopActivity3.class);
-        startActivity(I); // go to shopActivity3
+        startActivity(I);
     }
 }

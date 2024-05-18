@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp">
-<!--This list is for catalogue page-->
+
     <ImageView
         android:id="@+id/icon"
         android:layout_width="60dp"
@@ -23,7 +23,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:padding="2dp"
-            android:textColor="#33CC33" />
+            android:textColor="#2196F3" />
 
         <TextView
             android:id="@+id/textView1"
